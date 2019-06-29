@@ -26,30 +26,75 @@ const items = ['Pencil', 'Notebook', 'yo-yo', 'Gum'];
 */
 
 console.log(`getLength passes the length of the array into the callback.`);
-function getLength(arr, cb) {
-  
-}
 
-console.log(`last passes the last item of the array into the callback.`);
+  // option1
+  const getLength = (arr, cb) => cb(arr.length);
+  console.log(getLength(items, length => length));
+
+// option2
+  function getLength2(array, callback) {
+    return callback(array.length); 
+  }
+  const lengthofArray = getLength2(items, function(length) {
+    return length;
+  })
+  console.log(lengthofArray);
+
+//end========================================
+
+console.log(`====last passes the last item of the array into the callback.===`);
+
 function last(arr, cb) {
-  
+  return cb (arr[arr.length - 1]); 
+  }
+  const lastItem = last(items, function(last) {
+    return last
+  })
+  console.log(lastItem);
+
+//end========================================
+console.log(`====sumNums adds two numbers (x, y) and passes the result to the callback`);
+
+function sumNums(x, y, cb) {
+  return cb (x + y);
 }
 
-console.log(`sumNums adds two numbers (x, y) and passes the result to the callback.`);
-function sumNums(x, y, cb) {
- 
-}
+const sum = sumNums(3,5, function(sumItems) {
+  return sumItems
+})
+console.log(sum);
+
+//end========================================
 
 console.log(`multiplyNums multiplies two numbers and passes the result to the callback.`)
+
 function multiplyNums(x, y, cb) {
-  
+  return cb (x * y)
 }
 
+const multi= multiplyNums(3,5, function(multiItems) {
+  return multiItems
+})
+console.log(multi);
+
+// end=========================================
+
 console.log(`contains checks if an item is present inside of the given array/list.
+
 // Pass true to the callback if it is, otherwise pass false.`)
 function contains(item, list, cb) {
-  
-}
+  for (let i = 0; i < list.length; i++) 
+    if (list[i] === item)
+     return cb (true);
+    else return cb(false);
+  }
+  const checks= contains(`Vasya`, items, function(checking) {
+    return checking
+  })
+  console.log(checks);
+
+
+//end========================================
 
 console.log (`* STRETCH PROBLEM *`);
 
