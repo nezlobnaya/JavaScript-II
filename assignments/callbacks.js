@@ -98,11 +98,24 @@ function contains(item, list, cb) {
 
 console.log (`* STRETCH PROBLEM *`);
 
-// function removeDuplicates(array, cb) {
+// ===Option1====
+
+function removeDuplicates(array, callback) {
+  return callback(array.filter((item, index) => array.indexOf(item) === index));
+}
+  const removeDupl = removeDuplicates(items, function(remDupl) {
+    return remDupl;
+  })
+  console.log(removeDupl);
+
 
   // removeDuplicates removes all duplicate values from the given array.
   // Pass the duplicate free array to the callback function.
   // Do not mutate the original array.
+
+  // `===Option2===
+
   const remove= (arr, cb) => cb(arr.filter((item, index) => arr.indexOf(item) === index));
   console.log(remove(items, filter => filter));
 
+  
