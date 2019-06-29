@@ -1,7 +1,8 @@
+"use strict";
 console.log(`Create a higher order function and invoke the callback function to test your work.`);
 // You have been provided an example of a problem and a solution to see how this works with our items array.  Study both the problem and the solution to figure out the rest of the problems.
 
-const items = ['Pencil', 'Notebook', 'yo-yo', 'Pencil', 'Gum'];
+const items = ['Pencil', 'Notebook', 'yo-yo', 'Pencil', 'Pencil', 'Gum'];
 
 /* 
 
@@ -55,14 +56,19 @@ function last(arr, cb) {
 //end========================================
 console.log(`====sumNums adds two numbers (x, y) and passes the result to the callback`);
 
-function sumNums(x, y, cb) {
-  return cb (x + y);
-}
+// ========Option1=======
+// function sumNums(x, y, cb) {
+//   return cb (x + y);
+// }
 
-const sum = sumNums(3,5, function(sumItems) {
-  return sumItems
-})
-console.log(sum);
+// const sum = sumNums(3,5, function(sumItems) {
+//   return sumItems
+// })
+// console.log(sum);
+
+// =====Option2======
+const sumNums = (x,y, cb) => cb(x+y);
+  console.log(sumNums(3,5, sum => sum));
 
 //end========================================
 
@@ -113,9 +119,16 @@ function removeDuplicates(array, callback) {
   // Pass the duplicate free array to the callback function.
   // Do not mutate the original array.
 
-  // `===Option2===
+  // ===Option2===
 
   const remove= (arr, cb) => cb(arr.filter((item, index) => arr.indexOf(item) === index));
   console.log(remove(items, filter => filter));
+
+// =====Option 3=======
+  const removeIt= (arr, cb) => cb([...new Set(items)]);
+  console.log(removeIt(items, removed => removed));
+
+
+ 
 
   
