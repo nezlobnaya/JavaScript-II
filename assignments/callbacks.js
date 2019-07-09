@@ -1,6 +1,8 @@
-// Create a higher order function and invoke the callback function to test your work. You have been provided an example of a problem and a solution to see how this works with our items array.  Study both the problem and the solution to figure out the rest of the problems.
+"use strict";
+console.log(`Create a higher order function and invoke the callback function to test your work.`);
+// You have been provided an example of a problem and a solution to see how this works with our items array.  Study both the problem and the solution to figure out the rest of the problems.
 
-const items = ['Pencil', 'Notebook', 'yo-yo', 'Gum'];
+const items = ['Pencil', 'Notebook', 'yo-yo', 'Pencil', 'Pencil', 'Gum'];
 
 /* 
 
@@ -24,32 +26,109 @@ const items = ['Pencil', 'Notebook', 'yo-yo', 'Gum'];
 
 */
 
+console.log(`getLength passes the length of the array into the callback.`);
 
-function getLength(arr, cb) {
-  // getLength passes the length of the array into the callback.
-}
+  // option1
+  const getLength = (arr, cb) => cb(arr.length);
+  console.log(getLength(items, length => length));
+
+// option2
+  function getLength2(array, callback) {
+    return callback(array.length); 
+  }
+  const lengthofArray = getLength2(items, function(length) {
+    return length;
+  })
+  console.log(lengthofArray);
+
+//end========================================
+
+console.log(`====last passes the last item of the array into the callback.===`);
 
 function last(arr, cb) {
-  // last passes the last item of the array into the callback.
-}
+  return cb (arr[arr.length - 1]); 
+  }
+  const lastItem = last(items, function(last) {
+    return last
+  })
+  console.log(lastItem);
 
-function sumNums(x, y, cb) {
-  // sumNums adds two numbers (x, y) and passes the result to the callback.
-}
+//end========================================
+console.log(`====sumNums adds two numbers (x, y) and passes the result to the callback`);
+
+// ========Option1=======
+// function sumNums(x, y, cb) {
+//   return cb (x + y);
+// }
+
+// const sum = sumNums(3,5, function(sumItems) {
+//   return sumItems
+// })
+// console.log(sum);
+
+// =====Option2======
+const sumNums = (x,y, cb) => cb(x+y);
+  console.log(sumNums(3,5, sum => sum));
+
+//end========================================
+
+console.log(`multiplyNums multiplies two numbers and passes the result to the callback.`)
 
 function multiplyNums(x, y, cb) {
-  // multiplyNums multiplies two numbers and passes the result to the callback.
+  return cb (x * y)
 }
 
+const multi= multiplyNums(3,5, function(multiItems) {
+  return multiItems
+})
+console.log(multi);
+
+// end=========================================
+
+console.log(`contains checks if an item is present inside of the given array/list.
+
+// Pass true to the callback if it is, otherwise pass false.`)
 function contains(item, list, cb) {
-  // contains checks if an item is present inside of the given array/list.
-  // Pass true to the callback if it is, otherwise pass false.
+  for (let i = 0; i < list.length; i++) 
+    if (list[i] === item)
+     return cb (true);
+    else return cb(false);
+  }
+  const checks= contains(`Vasya`, items, function(checking) {
+    return checking
+  })
+  console.log(checks);
+
+
+//end========================================
+
+console.log (`* STRETCH PROBLEM *`);
+
+// ===Option1====
+
+function removeDuplicates(array, callback) {
+  return callback(array.filter((item, index) => array.indexOf(item) === index));
 }
+  const removeDupl = removeDuplicates(items, function(remDupl) {
+    return remDupl;
+  })
+  console.log(removeDupl);
 
-/* STRETCH PROBLEM */
 
-function removeDuplicates(array, cb) {
   // removeDuplicates removes all duplicate values from the given array.
   // Pass the duplicate free array to the callback function.
   // Do not mutate the original array.
-}
+
+  // ===Option2===
+
+  const remove= (arr, cb) => cb(arr.filter((item, index) => arr.indexOf(item) === index));
+  console.log(remove(items, filter => filter));
+
+// =====Option 3=======
+  const removeIt= (arr, cb) => cb([...new Set(items)]);
+  console.log(removeIt(items, removed => removed));
+
+
+ 
+
+  
